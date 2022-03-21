@@ -44,7 +44,7 @@ info = str(inputs.info)
 rmod = str(inputs.run)
 dtarget = str(inputs.target)
 threads = inputs.threads
-if validators.domain(dtarget.lower()) != True and dtarget.lower() != "monitor":
+if validators.domain(dtarget.lower()) != True and dtarget.lower() != "monitor" and dtarget.lower() != "*":
     try:
         ipaddress.ip_network(dtarget)
         dtarget = dtarget.replace("/", "#")

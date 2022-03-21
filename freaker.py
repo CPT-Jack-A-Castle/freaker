@@ -103,7 +103,7 @@ def getinputs(detection, output):
         os.system("cat {0}{4}/{3}.kenz | grep -i '\[.*{1}.*\]' | cut -d ' ' -f 2 | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
     elif location in ['favscan']:
-        os.system("cat {0}{4}/{3}.kenz | grep -i $'\\t{1}\\t' | cut -d$'\\t' -f 3 | sort -u | tee -a {2}".format(
+        os.system("cat {0}{4}/{3}.kenz | grep -i '\t{1}\t' | cut -d '\t' -f 3 | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
     elif location in ['cvescan', 'idscan', 'vulnscan', 'buckscan', 'subscan', 'cscan', 'endscan']:
         os.system("cat {0}{4}/{3}.kenz | grep -i '\[{1}\]'| cut -d ' ' -f 2- | sort -u | tee -a {2}".format(

@@ -16,7 +16,7 @@ GREEN = '\033[92m'
 YELLOW = '\033[93m'
 CLEAR = '\x1b[0m'
 
-print(BLUE + "Freaker[2.4] by ARPSyndicate" + CLEAR)
+print(BLUE + "Freaker[2.5] by ARPSyndicate" + CLEAR)
 print(YELLOW + "automation framework for kenzerdb" + CLEAR)
 
 if len(sys.argv) < 2:
@@ -36,7 +36,7 @@ else:
     parser.add_option('-r', '--run-module', action="store",
                       dest="run", help="runs a module")
     parser.add_option('-T', '--threads', action="store",
-                      dest="threads", help="number of concurrent threads", default=5)
+                      dest="threads", help="number of concurrent threads [default = 10]", default=10)
 
 inputs, args = parser.parse_args()
 ilist = inputs.list
@@ -128,6 +128,7 @@ def filterinputs(inputs, output):
     dlist = list(set(dlist))
     with open(output, 'w') as f:
         f.writelines("%s\n" % line for line in dlist)
+    os.system("rm "+inputs)
 
 
 def moduleinfo(command):

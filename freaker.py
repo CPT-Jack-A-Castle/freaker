@@ -16,7 +16,7 @@ GREEN = '\033[92m'
 YELLOW = '\033[93m'
 CLEAR = '\x1b[0m'
 
-print(BLUE + "Freaker[2.5] by ARPSyndicate" + CLEAR)
+print(BLUE + "Freaker[2.6] by ARPSyndicate" + CLEAR)
 print(YELLOW + "automation framework for kenzerdb" + CLEAR)
 
 if len(sys.argv) < 2:
@@ -96,11 +96,14 @@ def getinputs(detection, output):
     if location in ['portenum', 'webenum']:
         os.system("cat {0}{4}/{3}.kenz | grep -i ':{1}$' | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
-    elif location in ['headenum', 'urlheadenum', 'shodscan', 'urlenum']:
+    elif location in ['headenum', 'urlheadenum', 'shodscan']:
         os.system("cat {0}{4}/{3}.kenz | grep -i '{1}' | cut -d ' ' -f 1 | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
+    elif location in ['urlenum']:
+        os.system("cat {0}{4}/{3}.kenz | grep -i '{1}' | cut -d ' ' -f 2- | sort -u | tee -a {2}".format(
+            kenzerdb, detect, output, location, dtarget))
     elif location in ['servenum']:
-        os.system("cat {0}{4}/{3}.kenz | grep -i '\[.*{1}.*\]' | cut -d ' ' -f 2 | sort -u | tee -a {2}".format(
+        os.system("cat {0}{4}/{3}.kenz | grep -i '\[{1}\]' | cut -d ' ' -f 2 | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
     elif location in ['favscan']:
         os.system("cat {0}{4}/{3}.kenz | grep -i '\t{1}\t' | cut -d '\t' -f 3 | sort -u | tee -a {2}".format(

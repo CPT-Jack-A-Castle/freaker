@@ -96,7 +96,7 @@ def getinputs(detection, output):
     if location in ['portenum', 'webenum']:
         os.system("cat {0}{4}/{3}.kenz | grep -i ':{1}$' | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
-    elif location in ['headenum', 'urlheadenum', 'shodscan']:
+    elif location in ['headenum', 'urlheadenum', 'shodscan', 'urlenum']:
         os.system("cat {0}{4}/{3}.kenz | grep -i '{1}' | cut -d ' ' -f 1 | sort -u | tee -a {2}".format(
             kenzerdb, detect, output, location, dtarget))
     elif location in ['servenum']:

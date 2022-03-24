@@ -167,11 +167,11 @@ def exploitit(command):
         emp = workspace+"{0}.freakem".format(command)
         inp = workspace+"{0}.freakin".format(command)
         detections = db[command]['detections'].split("||")
+        if(os.path.exists(out)):
+            os.system("mv {0} {0}.old".format(out))
         for detects in detections:
             getinputs(detects, emp)
         filterinputs(emp, inp)
-        if(os.path.exists(out)):
-            os.system("mv {0} {0}.old".format(out))
         if db[command]['itype'] == 'single':
             with open(inp) as f:
                 targets = f.read().splitlines()            
@@ -184,7 +184,7 @@ def exploitit(command):
                     sys.exit()
         else:
             os.system("cd {0}{1} && python3 main.py '{2}' '{3}'".format(freakerdb, db[command]['path'], inp, out))
-        os.system("cat {0}.* > {0}".format(out))
+        os.system("cat {0}.* >> {0}".format(out))
         os.system("rm {0}.*".format(out))
         os.system("rm {0}".format(inp))
 
